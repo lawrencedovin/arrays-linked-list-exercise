@@ -128,9 +128,11 @@ class Node {
         let currentIdx = 0;
         let previousNode;
         let priorNode;
+        let allNodes = [];
         while(currentNode) {
             if(currentIdx === idx - 1) previousNode = currentNode;
             if(currentIdx === idx) priorNode = currentNode;
+            allNodes.push(currentNode);
             currentNode = currentNode.next;
             currentIdx++;
         }
@@ -142,6 +144,14 @@ class Node {
             // Updates Head to New Node
             this.head = newNode;
         }
+        // If inserting at Tail
+        else if(allNodes[idx - 1] === this.tail) {
+            // Points previous tail Node's next to New Node
+            this.tail.next = newNode;
+            // Updated Tail to New Node
+            this.tail = newNode;
+        }
+
         else {
             // Updates previous Node's next to New Node
             previousNode.next = newNode;
@@ -181,14 +191,14 @@ pets.push('George');
 // console.log(pets.getAt(2));
 // pets.traverse();
 
-// pets.setAt(2, 'Peanut');
+// pets.setAt(0, 'Peanut');
 // pets.traverse();
 
-// pets.insertAt(2, 'Shaq O Neil');
-// pets.traverse();
+pets.insertAt(2, 'Shaq O Neil');
+pets.traverse();
 
 // Insert at Head
-pets.insertAt(0, 'Ketchup');
-pets.traverse();
+// pets.insertAt(0, 'Ketchup');
+// pets.traverse();
 
 module.exports = LinkedList;
