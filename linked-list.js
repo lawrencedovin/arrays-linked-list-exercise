@@ -134,14 +134,21 @@ class Node {
             currentNode = currentNode.next;
             currentIdx++;
         }
-        // console.log(`Previous Node: ${previousNode.val}`);
-        // console.log(`Prior Node: ${priorNode.val}`);
 
-        // Updates previous Node's next to New Node
-        previousNode.next = newNode;
-        // New Node's next is set to the old Node that was previously 
-        // at the Index
-        newNode.next = priorNode;
+        // If inserting at Head
+        if(idx === 0) {
+            // Points New Node next to previous head node
+            newNode.next = this.head;
+            // Updates Head to New Node
+            this.head = newNode;
+        }
+        else {
+            // Updates previous Node's next to New Node
+            previousNode.next = newNode;
+            // New Node's next is set to the old Node that was previously 
+            // at the Index
+            newNode.next = priorNode;
+        }
     }
   
     /** removeAt(idx): return & remove item at idx, */
@@ -177,7 +184,11 @@ pets.push('George');
 // pets.setAt(2, 'Peanut');
 // pets.traverse();
 
-// pets.insertAt(2, 'idk');
+// pets.insertAt(2, 'Shaq O Neil');
 // pets.traverse();
+
+// Insert at Head
+pets.insertAt(0, 'Ketchup');
+pets.traverse();
 
 module.exports = LinkedList;
