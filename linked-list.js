@@ -123,7 +123,25 @@ class Node {
     /** insertAt(idx, val): add node w/val before idx. */
   
     insertAt(idx, val) {
-  
+        let newNode = new Node(val);
+        let currentNode = this.head;
+        let currentIdx = 0;
+        let previousNode;
+        let priorNode;
+        while(currentNode) {
+            if(currentIdx === idx - 1) previousNode = currentNode;
+            if(currentIdx === idx) priorNode = currentNode;
+            currentNode = currentNode.next;
+            currentIdx++;
+        }
+        // console.log(`Previous Node: ${previousNode.val}`);
+        // console.log(`Prior Node: ${priorNode.val}`);
+
+        // Updates previous Node's next to New Node
+        previousNode.next = newNode;
+        // New Node's next is set to the old Node that was previously 
+        // at the Index
+        newNode.next = priorNode;
     }
   
     /** removeAt(idx): return & remove item at idx, */
@@ -156,7 +174,10 @@ pets.push('George');
 // console.log(pets.getAt(2));
 // pets.traverse();
 
-pets.setAt(2, 'Peanut');
-pets.traverse();
+// pets.setAt(2, 'Peanut');
+// pets.traverse();
+
+// pets.insertAt(2, 'idk');
+// pets.traverse();
 
 module.exports = LinkedList;
