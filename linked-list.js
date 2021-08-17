@@ -17,7 +17,17 @@ class Node {
   
       for (let val of vals) this.push(val);
     }
-  
+
+    /** traverse(): Display values of all nodes */
+
+    traverse() {
+        let currentNode = this.head;
+        while(currentNode) {
+            console.log(currentNode.val);
+            currentNode = currentNode.next;
+        }
+    }
+
     /** push(val): add new value to end of list. */
   
     push(val) {
@@ -26,16 +36,24 @@ class Node {
           this.head = newNode;
           this.tail = newNode;
       }
-      // Point current tail's next to newNode
+      // Point current Tail's next to newNode.
       this.tail.next = newNode;
-      // Update tail to New Node
+      // Update Tail to New Node.
       this.tail = newNode;
     }
   
     /** unshift(val): add new value to start of list. */
   
     unshift(val) {
-  
+        let newNode = new Node(val);
+        if(!this.head) {
+            this.head = newNode;
+            this.tail = newNode;
+        }
+        // Point New Node's next to Current Head
+        newNode.next = this.head;
+        // Set Head to New Node.
+        this.head = newNode;
     }
   
     /** pop(): return & remove last item. */
@@ -85,6 +103,8 @@ let pets = new LinkedList();
 pets.push('Popcorn');
 pets.push('Bok James Bok');
 pets.push('George');
-console.log(pets);
+// pets.traverse();
+pets.unshift('Peacock');
+pets.traverse();
 
 module.exports = LinkedList;
