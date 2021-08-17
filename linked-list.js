@@ -110,7 +110,14 @@ class Node {
     /** setAt(idx, val): set val at idx to val */
   
     setAt(idx, val) {
-  
+        let currentNode = this.head;
+        let currentIdx = 0;
+        while(currentNode && currentIdx <= idx) {
+            if(currentIdx === idx) return currentNode.val = val;
+            currentNode = currentNode.next;
+            currentIdx++;
+        }
+        return `Index ${idx} not found`;
     }
   
     /** insertAt(idx, val): add node w/val before idx. */
@@ -146,6 +153,10 @@ pets.push('George');
 // console.log(pets.shift());
 // pets.traverse();
 
-console.log(pets.getAt(2));
+// console.log(pets.getAt(2));
+// pets.traverse();
+
+pets.setAt(2, 'Peanut');
+pets.traverse();
 
 module.exports = LinkedList;
