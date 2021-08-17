@@ -78,7 +78,20 @@ class Node {
     /** shift(): return & remove first item. */
   
     shift() {
-  
+        // Used to return old Head.
+        let copiedOldHead = this.head;
+        // New Head is the Node after current Head.
+        let newHead = this.head.next;
+
+        // Sets current Head's next value to null
+        // to remove it from the LinkedList.
+        this.head.next = null;
+
+        // Updates new Head to newHead.
+        this.head = newHead;
+        
+        return copiedOldHead;
+
     }
   
     /** getAt(idx): get val at idx. */
@@ -120,5 +133,7 @@ pets.push('George');
 // pets.unshift('Peacock');
 // console.log(pets.pop());
 // pets.traverse();
+console.log(pets.shift());
+pets.traverse();
 
 module.exports = LinkedList;
