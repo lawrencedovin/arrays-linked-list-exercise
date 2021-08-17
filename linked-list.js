@@ -89,7 +89,7 @@ class Node {
 
         // Updates new Head to newHead.
         this.head = newHead;
-        
+
         return copiedOldHead;
 
     }
@@ -97,7 +97,14 @@ class Node {
     /** getAt(idx): get val at idx. */
   
     getAt(idx) {
-  
+        let currentNode = this.head;
+        let currentIdx = 0;
+        while(currentNode && currentIdx <= idx) {
+            if(currentIdx === idx) return currentNode.val;
+            currentNode = currentNode.next;
+            currentIdx++;
+        }
+        return `Index ${idx} not found`;
     }
   
     /** setAt(idx, val): set val at idx to val */
@@ -129,11 +136,16 @@ let pets = new LinkedList();
 pets.push('Popcorn');
 pets.push('Bok James Bok');
 pets.push('George');
+
 // pets.traverse();
 // pets.unshift('Peacock');
+
 // console.log(pets.pop());
 // pets.traverse();
-console.log(pets.shift());
-pets.traverse();
+
+// console.log(pets.shift());
+// pets.traverse();
+
+console.log(pets.getAt(2));
 
 module.exports = LinkedList;
