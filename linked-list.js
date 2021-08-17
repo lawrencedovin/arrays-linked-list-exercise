@@ -151,7 +151,6 @@ class Node {
             // Updated Tail to New Node
             this.tail = newNode;
         }
-
         else {
             // Updates previous Node's next to New Node
             previousNode.next = newNode;
@@ -170,7 +169,16 @@ class Node {
     /** average(): return an average of all values in the list */
   
     average() {
-      
+        let currentNode = this.head;
+        let sum = 0;
+        let length = 0;
+        while(currentNode){
+            sum += currentNode.val;
+            length++;
+            currentNode = currentNode.next;
+            
+        }
+        return sum/length;
     }
   }
 
@@ -178,6 +186,14 @@ let pets = new LinkedList();
 pets.push('Popcorn');
 pets.push('Bok James Bok');
 pets.push('George');
+let nums = new LinkedList();
+nums.push(2);
+nums.push(3);
+nums.push(1);
+nums.push(1);
+nums.push(7);
+nums.push(6);
+nums.push(9);
 
 // pets.traverse();
 // pets.unshift('Peacock');
@@ -194,11 +210,17 @@ pets.push('George');
 // pets.setAt(0, 'Peanut');
 // pets.traverse();
 
-pets.insertAt(2, 'Shaq O Neil');
-pets.traverse();
+// pets.insertAt(2, 'Shaq O Neil');
+// pets.traverse();
 
 // Insert at Head
 // pets.insertAt(0, 'Ketchup');
 // pets.traverse();
+
+// Insert at Tail
+// pets.insertAt(3, 'Red');
+// pets.traverse();
+
+console.log(nums.average());
 
 module.exports = LinkedList;
