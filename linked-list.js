@@ -59,7 +59,20 @@ class Node {
     /** pop(): return & remove last item. */
   
     pop() {
-  
+        let currentNode = this.head;
+        let newTail;
+        while(currentNode.next) {
+            if(currentNode.next === this.tail) newTail = currentNode;
+            currentNode = currentNode.next;
+        }
+        // Used to return old tail
+        let copiedOldTail = this.tail;
+        // Update new Tail to newTail.
+        this.tail = newTail;
+        // Point new Tail's next to null.
+        this.tail.next = null;
+
+        return copiedOldTail;
     }
   
     /** shift(): return & remove first item. */
@@ -104,7 +117,8 @@ pets.push('Popcorn');
 pets.push('Bok James Bok');
 pets.push('George');
 // pets.traverse();
-pets.unshift('Peacock');
-pets.traverse();
+// pets.unshift('Peacock');
+// console.log(pets.pop());
+// pets.traverse();
 
 module.exports = LinkedList;
