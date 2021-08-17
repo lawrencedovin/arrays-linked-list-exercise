@@ -163,7 +163,10 @@ class Node {
     /** removeAt(idx): return & remove item at idx, */
   
     removeAt(idx) {
-  
+        // If deleting at Head
+        if(idx === 0) {
+            return this.shift();
+        }
     }
   
     /** average(): return an average of all values in the list */
@@ -221,6 +224,9 @@ nums.push(9);
 // pets.insertAt(3, 'Red');
 // pets.traverse();
 
-console.log(nums.average());
+// console.log(nums.average());
+
+console.log(pets.removeAt(0));
+// pets.traverse();
 
 module.exports = LinkedList;
