@@ -163,9 +163,38 @@ class Node {
     /** removeAt(idx): return & remove item at idx, */
   
     removeAt(idx) {
-        // If deleting at Head
+        let currentIdx = 0;
+        let currentNode = this.head;
+        let previousNode;
+        let foundNode;
+        let allNodes = [];
+
+        // Iterates only up to Index value
+        while(currentNode && currentIdx <= idx) {
+            allNodes.push(currentNode);
+            if(currentIdx === idx - 1) previousNode = currentNode;
+            if(currentIdx === idx) foundNode = currentNode;
+            currentIdx++;
+            currentNode = currentNode.next;
+        }
+
+        // Checks if deleting at Head
         if(idx === 0) {
             return this.shift();
+        }
+        // Checks if deleting at Tail
+        else if(allNodes[idx].val === this.tail.val) {
+            return this.pop();
+        }
+        // Else delete at idx without updating head or tail
+        else {
+            // Used to return old node
+            let copiedOldFoundNode = foundNode;
+            // Updated previous node to point to Node after current found Node
+            previousNode.next = foundNode.next;
+            // Point current found Node to null to disconnect from LinkedList
+            foundNode.next = null;
+            return copiedOldFoundNode;
         }
     }
   
@@ -226,7 +255,16 @@ nums.push(9);
 
 // console.log(nums.average());
 
-console.log(pets.removeAt(0));
+// Removes at Head
+// console.log(pets.removeAt(0));
+// pets.traverse();
+
+// Removes at Tail
+// console.log(pets.removeAt(2));
+// pets.traverse();
+
+// Removes at Index w/o updating Head or Tail
+// console.log(pets.removeAt(1));
 // pets.traverse();
 
 module.exports = LinkedList;
